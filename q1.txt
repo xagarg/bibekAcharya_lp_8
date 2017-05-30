@@ -1,0 +1,63 @@
+import java.util.Scanner;
+
+/**
+ * Created by bbk on 5/29/17.
+ */
+public class QuestionOne {
+
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+        System.out.println("Input: ");
+        String enteredWord = input.nextLine();
+        boolean result = false;
+
+        char[] enteredWordToArray = enteredWord.toCharArray();
+
+        int[] charToInt=new int[enteredWordToArray.length];
+        int[] charToIntFromSecond=new int[enteredWordToArray.length-1];
+
+        for (int i = 0; i < enteredWordToArray.length; i++) {
+
+            charToInt[i]=(int)enteredWordToArray[i];
+
+        }
+        for (int i = 0; i < enteredWordToArray.length-1; i++) {
+
+            charToIntFromSecond[i]=(int)enteredWordToArray[i+1];
+
+        }
+        if( ((charToInt[0]<=90 && charToInt[0]>=65)&&(checkLetterSmall(charToIntFromSecond))) ||
+                checkLetterCaps(charToInt) || checkLetterSmall(charToInt)){
+            result=true;
+        }
+        System.out.println("Output: "+result);
+
+    }
+
+    public static boolean checkLetterCaps(int input[]){
+        boolean result=false;
+        for (int i=0;i<input.length;i++){
+            if(input[i]<=90 && input[i]>=65){
+                result=true;
+            }else{
+                result=false;
+                break;
+            }
+        }
+        return result;
+    }
+
+    public static boolean checkLetterSmall(int input[]){
+        boolean result=false;
+        for (int i=0;i<input.length;i++){
+            if(input[i]<=122 && input[i]>=97){
+                result=true;
+            }else{
+                result=false;
+                break;
+            }
+        }
+        return result;
+    }
+}

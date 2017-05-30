@@ -1,0 +1,65 @@
+import java.math.BigInteger;
+import java.util.Scanner;
+
+/**
+ * Created by bbk on 5/29/17.
+ */
+public class QuestionTwo {
+    public static void main(String[] args) {
+
+        Scanner input= new Scanner(System.in);
+
+        String string1;
+        String string2;
+
+        System.out.println("Enter first Number :");
+        string1= input.nextLine();
+        System.out.println("Enter second Number :");
+        string2= input.nextLine();
+        char[] str1 = string1.toCharArray();
+        char[] str2 = string2.toCharArray();
+        if (str1.length<110 & str2.length<110) {
+
+            if (checkArray(str1) && checkArray(str2)) {
+                System.out.println("The product is " + product(str1, str2));
+            } else {
+                System.out.println("String should contain only digits between 0 - 9");
+            }
+        }else {
+            System.out.println("Length of string exceed. Try Again!!!");
+        }
+
+    }
+
+    public static boolean checkArray(char[] chars ){
+        boolean result=false;
+        for (int i = 0; i <chars.length; i++){
+            if ((int)chars[i]>=48 && (int)chars[i]<=57){
+                result=true;
+            }else{
+                result =false;
+                break;
+            }
+        }
+        return result;
+    }
+    public static BigInteger toInteger(char[] chars){
+        BigInteger number= BigInteger.valueOf(0);
+        BigInteger cons=BigInteger.valueOf(10);
+        BigInteger temp;
+        for (int i=0;i<chars.length;i++){
+            temp=BigInteger.valueOf((int) chars[i]-48);
+            number = cons.multiply(number).add(temp);
+        }
+        return number;
+    }
+
+    public static BigInteger product(char[] strr1, char[]strr2){
+        BigInteger product =BigInteger.ONE;
+        BigInteger num1=toInteger(strr1);
+        BigInteger num2=toInteger(strr2);
+        product=num1.multiply(num2);
+        return product;
+    }
+}
+
